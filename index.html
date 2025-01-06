@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            background-color: #000000;
+            border-radius: 20px;
+            
+            padding: 30px;
+            box-shadow: 0 1px 10px rgba(240, 236, 236, 0.5);
+            width: 300px;
+        }
+
+        .display {
+            background-color: #121212;
+            color: #fff;
+            font-size: 2rem;
+            border: none;
+            border-radius: 10px;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .display::placeholder{
+            color: white;
+            padding-right: 20px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .button {
+            background-color: #343456;
+          
+            color: #fff;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .button:hover{
+            box-shadow: 2px 3px 10px black;
+        }
+
+        .button.operator {
+            background-color: #171c17;
+            color: green;
+        }
+        .button.operator:hover{
+            box-shadow: 2px 3px 10px #343456;
+        }
+
+        .button.equal {
+            background-color: #ff9f00;
+            color: #fff;
+            grid-column: span 2;
+        }
+        .button.equal:hover{
+            box-shadow: 2px 3px 10px #ff9f00;
+        }
+
+        .button:hover {
+            opacity: 0.8;
+        }
+        .calculator{
+            animation: calculator 5s 1;
+        }
+        @keyframes calculator{
+            to{
+                transform: translateX(30px); 
+            }
+        }
+        h1{
+            color: transparent;
+            text-align: center;
+            animation: title 5s infinite;
+        }
+        @keyframes title{
+            to{
+                color: white; 
+            }
+        }
+        body{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1 >Calculator</h1>
+    <div class="container">
+    <div class="calculator">
+        <input type="text" class="display" id="display" placeholder="0" disabled>
+        <div class="buttons">
+            <button class="button operator" onclick="clearDisplay()">AC</button>
+            <button class="button operator" onclick="deleteDigit()">DEL</button>
+            <button class="button operator" onclick="append('%')">%</button>
+            <button class="button operator" onclick="append('/')">/</button>
+
+            <button class="button" onclick="append('7')">7</button>
+            <button class="button" onclick="append('8')">8</button>
+            <button class="button" onclick="append('9')">9</button>
+            <button class="button operator" onclick="append('*')">*</button>
+
+            <button class="button" onclick="append('4')">4</button>
+            <button class="button" onclick="append('5')">5</button>
+            <button class="button" onclick="append('6')">6</button>
+            <button class="button operator" onclick="append('-')">-</button>
+
+            <button class="button" onclick="append('1')">1</button>
+            <button class="button" onclick="append('2')">2</button>
+            <button class="button" onclick="append('3')">3</button>
+            <button class="button operator" onclick="append('+')">+</button>
+
+            <button class="button" onclick="append('00')">00</button>
+            <button class="button" onclick="append('0')">0</button>
+            <button class="button" onclick="append('.')">.</button>
+            <button class="button equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        function append(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function deleteDigit() {
+            const display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                const result = eval(document.getElementById('display').value);
+                document.getElementById('display').value = result;
+            } catch {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+    </div>
+</body>
+</html>
