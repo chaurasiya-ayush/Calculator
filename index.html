@@ -10,13 +10,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: black;
+            /* background-color: black; */
             margin: 0;
             font-family: Arial, sans-serif;
         }
 
         .calculator {
-            background-color: #000000;
+            /* background-color: #000000; */
             border-radius: 20px;
             
             padding: 30px;
@@ -90,18 +90,31 @@
             }
         }
         h1{
-            color: transparent;
+            color: white;
             text-align: center;
-            animation: title 5s infinite;
+            animation: title 5s 1;
         }
         @keyframes title{
-            to{
-                color: white; 
+            from{
+                color: transparent; 
             }
         }
         body{
             background-color: black;
         }
+        .mode{
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            border: none;
+            padding: 10px;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: bold;
+
+            background-color: rgba(212, 205, 205, 0.9);
+        }
+
     </style>
 </head>
 <body>
@@ -136,6 +149,7 @@
             <button class="button equal" onclick="calculate()">=</button>
         </div>
     </div>
+    <button class="mode" id="mode">Light Mode</button>
 
     <script>
         function append(value) {
@@ -159,6 +173,19 @@
                 document.getElementById('display').value = 'Error';
             }
         }
+        const mode = document.getElementById("mode");
+        mode.addEventListener("click",()=>{
+            console.log("clicked");
+            let dark = 1;
+            if(dark==1){
+                console.log("light on");
+                dark=0;
+            }
+            else{
+                console.log("light off");
+                dark =1;
+            }
+        })
     </script>
     </div>
 </body>
